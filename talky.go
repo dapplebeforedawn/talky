@@ -27,7 +27,7 @@ func main() {
   tagger := tagger.Tagger{}
   words := Lex(os.Stdin)
   tagger.Tag(words, token_map)
-  fmt.Println(tagger.Tags)
+  fmt.Println(*tagger.ToTagMap())
 }
 
 func Lex(r io.Reader) []string {
