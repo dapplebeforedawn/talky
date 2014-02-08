@@ -6,7 +6,6 @@ import (
   "regexp"
 )
 
-
 // after tagging, Words and Tags will be the
 //same length
 type Tagger struct {
@@ -16,7 +15,7 @@ type Tagger struct {
 
 type TagMap map[string][]string
 
-func (t *Tagger) ToTagMap() *TagMap {
+func (t *Tagger) ToTagMap() TagMap {
   tag_map := make(TagMap)
   for i, tag := range t.Tags {
     words, was_found := tag_map[tag]
@@ -26,7 +25,7 @@ func (t *Tagger) ToTagMap() *TagMap {
       tag_map[tag] = []string{ t.Words[i] }
     }
   }
-  return &tag_map
+  return tag_map
 }
 
 func (t *Tagger) Tag(lex []string, token_map map[string][]string) {

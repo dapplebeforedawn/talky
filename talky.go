@@ -2,6 +2,7 @@ package main
 
 import (
   "dapplebeforedawn/talky/tagger"
+  "dapplebeforedawn/talky/constructor"
   "encoding/json"
   "bytes"
   "os"
@@ -27,7 +28,11 @@ func main() {
   tagger := tagger.Tagger{}
   words := Lex(os.Stdin)
   tagger.Tag(words, token_map)
-  fmt.Println(*tagger.ToTagMap())
+  fmt.Println(tagger.Tags)
+  fmt.Println(tagger.ToTagMap())
+
+  sentence := constructor.Construct([]string{"MD", "DT", "NN", "NN", "JJ", "NN"}, tagger.ToTagMap())
+  fmt.Println(sentence)
 }
 
 func Lex(r io.Reader) []string {
