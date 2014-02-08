@@ -10,10 +10,10 @@ import (
   "fmt"
 )
 
-type Words map[string][]string
+type Tokens map[string][]string
 
 func main() {
-  words := make(Words)
+  token_map := make(Tokens)
   var b bytes.Buffer
   map_file, err := os.Open("./token_map.json")
   if err != nil {panic(err)}
@@ -21,12 +21,12 @@ func main() {
   _, read_err := b.ReadFrom(map_file)
   if read_err != nil {panic(read_err)}
 
-  json_err := json.Unmarshal(b.Bytes(), &words)
+  json_err := json.Unmarshal(b.Bytes(), &token_map)
   if json_err != nil {panic(json_err)}
 
   tagger := tagger.Tagger{}
-  tokens := Lex(os.Stdin)
-  tagger.Tag(tokens, words)
+  words := Lex(os.Stdin)
+  tagger.Tag(words, token_map)
   fmt.Println(tagger.Tags)
 }
 
