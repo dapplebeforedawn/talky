@@ -13964,6 +13964,15 @@
   "coudn": [
       "MD"
   ],
+  "couldn't": [
+      "MD"
+  ],
+  "shouldn't": [
+      "MD"
+  ],
+  "wasn't": [
+      "MD"
+  ],
   "Watchmen": [
       "NNP"
   ],
@@ -297823,5 +297832,122 @@
   ],
   "jawbone": [
       "NN"
+  ],
+  "one": [
+      "CD"
+  ],
+  "two": [
+      "CD"
+  ],
+  "three": [
+      "CD"
+  ],
+  "four": [
+      "CD"
+  ],
+  "five": [
+      "CD"
+  ],
+  "six": [
+      "CD"
+  ],
+  "seven": [
+      "CD"
+  ],
+  "eight": [
+      "CD"
+  ],
+  "nine": [
+      "CD"
+  ],
+  "ten": [
+      "CD"
+  ],
+  "eleven": [
+      "CD"
+  ],
+  "twelve": [
+      "CD"
+  ],
+  "thirteen": [
+      "CD"
+  ],
+  "fourteen": [
+      "CD"
+  ],
+  "fifteen": [
+      "CD"
+  ],
+  "sixteen": [
+      "CD"
+  ],
+  "seventeen": [
+      "CD"
+  ],
+  "eighteen": [
+      "CD"
+  ],
+  "nineteen": [
+      "CD"
+  ],
+  "twenty": [
+      "CD"
+  ],
+  "first": [
+      "ORD"
+  ],
+  "second": [
+      "ORD"
+  ],
+  "third": [
+      "ORD"
+  ],
+  "fourth": [
+      "ORD"
+  ],
+  "fifth": [
+      "ORD"
+  ],
+  "sixth": [
+      "ORD"
+  ],
+  "seventh": [
+      "ORD"
+  ],
+  "eighth": [
+      "ORD"
+  ],
+  "nineth": [
+      "ORD"
+  ],
+  "tenth": [
+      "ORD"
+  ],
+  "eleventh": [
+      "ORD"
+  ],
+  "twelth": [
+      "ORD"
+  ],
+  "thirteenth": [
+      "ORD"
+  ],
+  "fourteenth": [
+      "ORD"
+  ],
+  "fifteenth": [
+      "ORD"
+  ],
+  "sixteenth": [
+      "ORD"
+  ],
+  "seventheenth": [
+      "ORD"
+  ],
+  "eighteenth": [
+      "ORD"
+  ],
+  "nineteenth": [
+      "ORD"
   ]
 }
