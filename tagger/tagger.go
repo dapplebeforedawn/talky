@@ -47,33 +47,33 @@ func (t *Tagger) Tag(lex []string, token_map map[string][]string) {
 }
 
 func (t *Tagger) applyTransformations() {
-  for i, tag := range t.Tags {
+  for i, _ := range t.Tags {
 
     //  rule 1: DT, {VBD | VBP} --> DT, NN
-    t.Tags[i] = t.ruleOne(i, tag)
+    t.Tags[i] = t.ruleOne(i, t.Tags[i])
 
     // rule 2: convert a noun to a number (CD) if "." appears in the word
     //         or a URL if that works
-    t.Tags[i] = t.ruleTwo(i, tag)
+    t.Tags[i] = t.ruleTwo(i, t.Tags[i])
 
     // rule 3: convert a noun to a past participle if words ends with "ed"
-    t.Tags[i] = t.ruleThree(i, tag)
+    t.Tags[i] = t.ruleThree(i, t.Tags[i])
 
     // rule 4: convert any type to adverb if it ends in "ly";
-    t.Tags[i] = t.ruleFour(i, tag)
+    t.Tags[i] = t.ruleFour(i, t.Tags[i])
 
     // rule 5: convert a common noun (NN or NNS) to a adjective if it ends with "al"
-    t.Tags[i] = t.ruleFive(i, tag)
+    t.Tags[i] = t.ruleFive(i, t.Tags[i])
 
     // rule 6: convert a noun to a verb if the preceding work is "would"
-    t.Tags[i] = t.ruleSix(i, tag)
+    t.Tags[i] = t.ruleSix(i, t.Tags[i])
 
     // rule 7: if a word has been categorized as a common noun and it ends with "s",
     //         then set its type to plural common noun (NNS)
-    t.Tags[i] = t.ruleSeven(i, tag)
+    t.Tags[i] = t.ruleSeven(i, t.Tags[i])
 
     // rule 8: convert a common noun to a present participle verb (i.e., a gerund)
-    t.Tags[i] = t.ruleEight(i, tag)
+    t.Tags[i] = t.ruleEight(i, t.Tags[i])
   }
 }
 
@@ -120,12 +120,14 @@ func (t *Tagger) ruleTwo(i int, tag string) (transformed string) {
   word := t.Words[i]
   if !strings.HasPrefix(tag, "N") { return }
 
-  _, parse_err := strconv.ParseFloat(tag, 32)
+  reg, _       := regexp.Compile("[,_]")
+  cleaned      := reg.ReplaceAllString(word, "")
+  _, parse_err := strconv.ParseFloat(cleaned, 32)
   if parse_err == nil { transformed = "CD" }
 
   if strings.Contains(word, ".") {
-    _, regex_err := regexp.Match("[a-zA-Z]{2}", []byte(word))
-    if regex_err == nil { transformed = "URL" }
+    matched, _ := regexp.Match("[a-zA-Z]{2}", []byte(word))
+    if matched { transformed = "URL" }
   }
 
   return

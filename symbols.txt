@@ -36,6 +36,7 @@ WDT Wh-determiner           which,that
 WP Wh pronoun               who,what
 WP$ Possessive-Wh           whose
 WRB Wh-adverb               how,where
+ORD ordinal                 first,second
 , Comma                     ,
 . Sent-final punct          . ! ?
 : Mid-sent punct.           : ; Ñ

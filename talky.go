@@ -2,12 +2,11 @@ package main
 
 import (
   "dapplebeforedawn/talky/tagger"
+  "dapplebeforedawn/talky/lexer"
   "dapplebeforedawn/talky/constructor"
   "encoding/json"
   "bytes"
   "os"
-  "io"
-  "bufio"
   "fmt"
 )
 
@@ -26,21 +25,12 @@ func main() {
   if json_err != nil {panic(json_err)}
 
   tagger := tagger.Tagger{}
-  words := Lex(os.Stdin)
+  words  := lexer.Lex(os.Stdin)
   tagger.Tag(words, token_map)
-  fmt.Println(tagger.Tags)
-  fmt.Println(tagger.ToTagMap())
+  // fmt.Println(tagger.ToTagMap())
 
-  sentence := constructor.Construct([]string{"MD", "DT", "NN", "NN", "JJ", "NN"}, tagger.ToTagMap())
-  fmt.Println(sentence)
-}
-
-func Lex(r io.Reader) []string {
-  ret := make([]string, 0)
-  scan := bufio.NewScanner(r)
-  scan.Split(bufio.ScanWords)
-  for scan.Scan() {
-    ret = append(ret, scan.Text())
-  }
-  return ret
+  structure := []string{"PRP", "VBD", "NN", "IN", "NNS", "DT", "NN", "VBG", "PRP$", "NN"}
+  // structure := []string{"MD", "DT", "NN", "NN", "JJ", "NN"}
+  sentence := constructor.NewConstructor(structure, tagger.ToTagMap())
+  fmt.Println(sentence.Construct())
 }

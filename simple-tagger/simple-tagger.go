@@ -17,7 +17,7 @@ type Words map[string][]string
 func main() {
   words := make(Words)
   var b bytes.Buffer
-  map_file, err := os.Open("./token_map.json")
+  map_file, err := os.Open("../token_map.json")
   if err != nil {panic(err)}
 
   _, read_err := b.ReadFrom(map_file)
