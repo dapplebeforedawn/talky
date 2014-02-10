@@ -4,15 +4,20 @@ import (
   "dapplebeforedawn/talky/tagger"
   "dapplebeforedawn/talky/lexer"
   "dapplebeforedawn/talky/constructor"
+  "dapplebeforedawn/talky/options"
   "encoding/json"
   "bytes"
   "os"
+  "strings"
   "fmt"
 )
 
 type Tokens map[string][]string
 
 func main() {
+  opts := opts.Options{}
+  opts.Parse()
+
   token_map := make(Tokens)
   var b bytes.Buffer
   map_file, err := os.Open("./token_map.json")
@@ -29,8 +34,7 @@ func main() {
   tagger.Tag(words, token_map)
   // fmt.Println(tagger.ToTagMap())
 
-  structure := []string{"PRP", "VBD", "NN", "IN", "NNS", "DT", "NN", "VBG", "PRP$", "NN"}
-  // structure := []string{"MD", "DT", "NN", "NN", "JJ", "NN"}
-  sentence := constructor.NewConstructor(structure, tagger.ToTagMap())
-  fmt.Println(sentence.Construct())
+  structure := opts.Blueprint
+  sentence  := constructor.NewConstructor(structure, tagger.ToTagMap())
+  fmt.Println(strings.Join(sentence.Construct(), " "))
 }

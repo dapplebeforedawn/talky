@@ -609,6 +609,9 @@
       "PRP$",
       "NNP"
   ],
+  "I": [
+      "PRP"
+  ],
   "Hit": [
       "VBN",
       "VBP",
@@ -80904,9 +80907,6 @@
   ],
   "pedagogical": [
       "JJ"
-  ],
-  "Drag": [
-      "VB"
   ],
   "irrepressible": [
       "JJ"

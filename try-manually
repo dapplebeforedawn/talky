@@ -1,0 +1,20 @@
+echo "He spent hundreds of dollars a day feeding his addiction." | go run simple-tagger.go
+{"PRP", "VBD", "NN", "IN", "NNS", "DT", "NN", "VBG", "PRP$", "NN"}
+she knew company in days the boys wanting her Facebook
+she had company for days the boys wanting her Facebook
+
+she had car
+ - Pick at random
+ -
+
+PRP:[she she She she him him I it me It me she she She me myself I she I it it I she She she she it]
+
+VBD:[was went had knew was was was was was was grew got drove became began came gained became received gained was was responded]
+NN:[Carrera kindergarten school crush fellow classmate trouble cheek day boy crush boy girl crush boy conference school femininity home act kind way school house act cover-up -- lot frustration car frustration rearview mirror drag club scene show Carrera Twitter Instagram Facebook Carrera part mainstream conversation petition transgender angel petition amount traction fashion show tape company petition]
+IN:[since in on in for up on that as on on After outside of in outside up with of At of that in in Since on than on on on of than on of before in]
+NNS:[parents followers media signatures Victoria's Secret's days]
+DT:[a a a the every a a a a a a a a the any the an a a some the the the a the a The a a the The the]
+NN:[Carrera kindergarten school crush fellow classmate trouble cheek day boy crush boy girl crush boy conference school femininity home act kind way school house act cover-up -- lot frustration car frustration rearview mirror drag club scene show Carrera Twitter Instagram Facebook Carrera part mainstream conversation petition transgender angel petition amount traction fashion show tape company petition]
+VBG:[running kissing having wanting having appearing]
+PRP$:[her My her]
+NN:[Carrera kindergarten school crush fellow classmate trouble cheek day boy crush boy girl crush boy conference school femininity home act kind way school house act cover-up -- lot frustration car frustration rearview mirror drag club scene show Carrera Twitter Instagram Facebook Carrera part mainstream conversation petition transgender angel petition amount traction fashion show tape company petition]
