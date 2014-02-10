@@ -15,7 +15,7 @@ func Lex(r io.Reader) []string {
   for scan.Scan() {
     ret = append(ret, scan.Text())
   }
-  return removePunctuation(ret)
+  return removeBlanks(removePunctuation(ret))
 }
 
 func removePunctuation(words []string) []string {
@@ -27,3 +27,12 @@ func removePunctuation(words []string) []string {
   return cleaned
 }
 
+func removeBlanks(words []string) []string {
+  var cleaned []string
+  for _, word := range words {
+    if len(word) != 0 {
+      cleaned = append(cleaned, word)
+    }
+  }
+  return cleaned
+}
