@@ -32,7 +32,7 @@ func main() {
   tagger := tagger.Tagger{}
   words  := lexer.Lex(os.Stdin)
   tagger.Tag(words, token_map)
-  // fmt.Println(tagger.ToTagMap())
+  // fmt.Println(words)
 
   structure := opts.Blueprint
   sentence  := constructor.NewConstructor(structure, tagger.ToTagMap())
