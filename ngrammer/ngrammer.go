@@ -14,8 +14,9 @@ const endpoint string = "http://web-ngram.research.microsoft.com/rest/lookup.svc
 const corpus string   = "/bing-body/jun09/3"
 const statType string = "/cp"
 
-func MostCommon(words []string) string {
-  body      := strings.Join(words, "\n")
+func MostCommon(words [][3]string) [3]string {
+  grams     := flatten(words)
+  body      := strings.Join(grams, "\n")
   statsJSON := getStats(strings.NewReader(body))
   stats     := []float64{}
   json.Unmarshal(statsJSON, &stats)
@@ -38,6 +39,13 @@ func getStats(body io.Reader) []byte {
 func max(stats []float64) (maxIdx int) {
   for i, stat := range stats {
     if stat >= stats[maxIdx] { maxIdx = i }
+  }
+  return
+}
+
+func flatten(words [][3]string) (grams []string) {
+  for _, gramSet := range words {
+    grams = append(grams, strings.Join(gramSet[:], " "))
   }
   return
 }

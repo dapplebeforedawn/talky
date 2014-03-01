@@ -9,6 +9,8 @@ import (
   "strings"
 )
 
+const NOT_FOUND string = "_"
+
 type Constructor struct {
   Tokens  []string
   TagMap  tagger.TagMap
@@ -26,7 +28,7 @@ func (c *Constructor) Construct() []string {
   sentance_words := make([]string, 0)
   for _, token := range c.Tokens {
     options, was_found := c.TagMap[token]
-    if !was_found { options = []string{"_"} }
+    if !was_found { options = []string{NOT_FOUND} }
     sentance_words = append(sentance_words, any(options))
   }
   return c.condition(sentance_words)

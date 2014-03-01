@@ -3,6 +3,7 @@ package main
 import (
   "dapplebeforedawn/talky/tagger"
   "dapplebeforedawn/talky/lexer"
+  "dapplebeforedawn/talky/smoother"
   "dapplebeforedawn/talky/constructor"
   "dapplebeforedawn/talky/options"
   "encoding/json"
@@ -29,12 +30,17 @@ func main() {
   json_err := json.Unmarshal(b.Bytes(), &token_map)
   if json_err != nil {panic(json_err)}
 
-  tagger := tagger.Tagger{}
+  iTagger := tagger.Tagger{}
   words  := lexer.Lex(os.Stdin)
-  tagger.Tag(words, token_map)
-  // fmt.Println(words)
+  iTagger.Tag(words, token_map)
 
-  structure := opts.Blueprint
-  sentence  := constructor.NewConstructor(structure, tagger.ToTagMap())
-  fmt.Println(strings.Join(sentence.Construct(), " "))
+  structure         := opts.Blueprint
+  sentenceConstruct := constructor.NewConstructor(structure, iTagger.ToTagMap())
+
+  sentence  := sentenceConstruct.Construct()
+  sTagger   := tagger.Tagger{}
+  sTagger.Tag(sentence, token_map)
+  smooth    := smoother.Smooth("IN", sTagger.ToTagPairs())
+
+  fmt.Println(strings.Join(smooth, " "))
 }

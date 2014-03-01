@@ -1,12 +1,13 @@
 package ngrammer
 
 import "testing"
+import "fmt"
 
 func TestMostCommonFirst(t *testing.T) {
-  commonWord   := "hundreds of dollars"
-  uncommonWord := "hundreds in dollars"
-  word := MostCommon( []string{commonWord, uncommonWord} )
-  if word == uncommonWord {
+  commonWord   := []string{"hundreds", "of", "dollars"}
+  uncommonWord := []string{"hundreds", "in", "dollars"}
+  word := MostCommon( [][]string{commonWord, uncommonWord} )
+  if fmt.Sprintf("%v", word) == fmt.Sprintf("%v", uncommonWord) {
     t.Error("For", "common words",
       "Expected", commonWord,
       "Got",      word,
@@ -15,10 +16,10 @@ func TestMostCommonFirst(t *testing.T) {
 }
 
 func TestMostCommonLast(t *testing.T) {
-  commonWord   := "hundreds of dollars"
-  uncommonWord := "hundreds in dollars"
-  word := MostCommon( []string{uncommonWord, commonWord} )
-  if word == uncommonWord {
+  commonWord   := []string{"hundreds", "of", "dollars"}
+  uncommonWord := []string{"hundreds", "in", "dollars"}
+  word := MostCommon( [][]string{uncommonWord, commonWord} )
+  if fmt.Sprintf("%v", word) == fmt.Sprintf("%v", uncommonWord) {
     t.Error("For", "common words",
       "Expected", commonWord,
       "Got",      word,

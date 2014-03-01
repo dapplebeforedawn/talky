@@ -13,7 +13,12 @@ type Tagger struct {
   Words []string
 }
 
-type TagMap map[string][]string
+type TagMap   map[string][]string // one to many list of tag => words
+
+type TagPair struct {
+  Tag  string
+  Word string
+}
 
 func (t *Tagger) ToTagMap() TagMap {
   tag_map := make(TagMap)
@@ -26,6 +31,17 @@ func (t *Tagger) ToTagMap() TagMap {
     }
   }
   return tag_map
+}
+
+func (t *Tagger) ToTagPairs() (tps []TagPair) {
+  for i, tag := range t.Tags {
+    tp := TagPair{
+      Tag:  tag,
+      Word: t.Words[i],
+    }
+    tps = append(tps, tp)
+  }
+  return
 }
 
 func (t *Tagger) Tag(lex []string, token_map map[string][]string) {
